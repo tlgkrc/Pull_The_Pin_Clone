@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Threading.Tasks;
 using Managers;
 using Signals;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Controllers
@@ -25,7 +28,7 @@ namespace Controllers
                 manager.ReleaseBallMove();
                 _didEnterCup = true;
             }
-
+            
             if (other.CompareTag(BallTag) && manager.DidPaintedBall() )
             {
                 PinSignals.Instance.onPaintBall?.Invoke(other.transform,_currentColor);

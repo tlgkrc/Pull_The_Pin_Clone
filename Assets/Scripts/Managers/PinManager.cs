@@ -1,8 +1,6 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Signals;
 using UnityEngine;
-using Random = System.Random;
 
 namespace Managers
 {
@@ -11,8 +9,7 @@ namespace Managers
         #region Self Variables
 
         [SerializeField] private Transform rodTransform;
-
-        public AnimationCurve Curve;
+        [SerializeField] private AnimationCurve curve;
         
         #endregion
 
@@ -51,10 +48,7 @@ namespace Managers
         private void MovePin()
         {
             transform.DOLocalMove(transform.up * rodTransform.localScale.x / 5 + transform.position, 3f).
-                SetSpeedBased().OnComplete(()=> DOTween.KillAll());
-
-            // transform.DOLocalMove(transform.up * 20 + transform.position, 3f).SetSpeedBased().SetEase(Curve);
-            // Curve.Evaluate(.5f);
+                SetSpeedBased().SetEase(curve).OnComplete(()=> DOTween.KillAll());
         }
     }
 }

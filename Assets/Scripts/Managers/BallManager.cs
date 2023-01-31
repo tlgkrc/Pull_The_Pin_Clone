@@ -1,4 +1,5 @@
-﻿using Controllers;
+﻿using System.Collections;
+using Controllers;
 using Data.UnityObject;
 using Data.ValueObject;
 using Signals;
@@ -89,9 +90,17 @@ namespace Managers
         {
             if (!isColored && physicTransform.parent.gameObject.GetInstanceID() == gameObject.GetInstanceID())
             {
-                meshController.ChangeBallColor(newColor);
                 isColored = true;
+                physicController.SetCurrentColor(newColor);
+                StartCoroutine(DelayPaint(newColor));
+
             }
+        }
+
+        IEnumerator DelayPaint(Color color)
+        {
+            yield return new WaitForEndOfFrame();
+            meshController.ChangeBallColor(color);
         }
     }
 }

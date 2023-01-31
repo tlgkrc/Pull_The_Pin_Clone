@@ -8,7 +8,7 @@ namespace Signals
     public class PinSignals : MonoSingleton<PinSignals>
     {
         public UnityAction<GameObject> onSelectedPin;
-        public UnityAction onWeightPassedBorder;
+        public UnityAction<float> onWeightPassedBorder;
         public UnityAction<Transform,Color> onPaintBall;
     }
 }

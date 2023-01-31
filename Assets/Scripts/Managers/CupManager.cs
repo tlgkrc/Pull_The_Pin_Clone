@@ -8,7 +8,7 @@ namespace Managers
     {
         #region Self Variables
 
-        
+        private const ushort TotalReplacementDistance = 20;
 
         #endregion
         
@@ -35,9 +35,9 @@ namespace Managers
 
         #endregion
 
-        private void OnWeightPassedBorder()
+        private void OnWeightPassedBorder(float replacementRatio)
         {
-            //transform.DOMoveY(2f, .5f).SetEase(Ease.InOutElastic);  
+            transform.DOMove( Vector3.down*TotalReplacementDistance*replacementRatio + transform.position, 1f);
         }
     }
 }

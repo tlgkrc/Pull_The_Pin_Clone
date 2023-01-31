@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5453361918281268615}
   - component: {fileID: 7703928292805475020}
   - component: {fileID: 3527454067643692842}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8919975320453388614}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Level2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

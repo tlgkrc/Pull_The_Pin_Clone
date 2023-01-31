@@ -15,7 +15,6 @@ namespace Controllers
 
         private float _collectedBall;
         private float _totalBall;
-        private bool _isPassedBorder;
         private const string PercentageSymbol = "%";
 
         #endregion
@@ -29,13 +28,9 @@ namespace Controllers
         {
             _collectedBall++;
             WritePercentage();
-            if (_collectedBall/_totalBall>= .5f && !_isPassedBorder)
-            {
-                PinSignals.Instance.onWeightPassedBorder?.Invoke();
-                _isPassedBorder = true;
-            }
+            PinSignals.Instance.onWeightPassedBorder?.Invoke(1/_totalBall);
 
-            if (Math.Abs(_collectedBall - _totalBall) < 0.1f)
+            if (Math.Abs(_collectedBall - _totalBall) < 0.01f)
             {
                 CoreGameSignals.Instance.onLevelSuccesfull?.Invoke();
             }
@@ -45,7 +40,6 @@ namespace Controllers
         {
             _collectedBall = 0;
             _totalBall = 0;
-            _isPassedBorder = false;
         }
 
         public void SetTotalBallNumber()
