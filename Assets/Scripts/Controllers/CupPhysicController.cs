@@ -1,5 +1,4 @@
-﻿using System;
-using Signals;
+﻿using Signals;
 using UnityEngine;
 
 namespace Controllers
@@ -17,6 +16,7 @@ namespace Controllers
             if (other.CompareTag(BallTag))
             {
                 UISignals.Instance.onUpdateCupScore?.Invoke();
+                AudioSignals.Instance.onPlayScoreSound?.Invoke();
                 
             }
         }

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Threading.Tasks;
-using Managers;
+﻿using Managers;
 using Signals;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Controllers
@@ -16,6 +12,7 @@ namespace Controllers
 
         private const string CupEntryTag = "CupEntry";
         private const string BallTag = "Ball";
+        private const string BombTag = "BombParticle";
         private bool _didEnterCup;
         private Color _currentColor;
 
@@ -32,6 +29,11 @@ namespace Controllers
             if (other.CompareTag(BallTag) && manager.DidPaintedBall() )
             {
                 PinSignals.Instance.onPaintBall?.Invoke(other.transform,_currentColor);
+            }
+
+            if (other.CompareTag(BombTag))
+            {
+                manager.gameObject.SetActive(false);
             }
         }
 

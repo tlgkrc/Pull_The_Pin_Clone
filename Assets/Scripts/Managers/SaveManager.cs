@@ -1,4 +1,5 @@
 ﻿using Signals;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Managers
@@ -41,5 +42,10 @@ namespace Managers
             return PlayerPrefs.GetInt("LevelID", 0);
         }
 
+        [Button]
+        private void ResetSave()
+        {
+            PlayerPrefs.DeleteAll();
+        }
     }
 }

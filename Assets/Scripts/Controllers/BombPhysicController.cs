@@ -1,5 +1,4 @@
-﻿using System;
-using Managers;
+﻿using Managers;
 using UnityEngine;
 
 namespace Controllers
@@ -12,14 +11,20 @@ namespace Controllers
         
         private const string BombTag = "Bomb";
         private const string BallTag = "Ball";
+        private bool _isActivated;
 
         #endregion
 
         private void OnTriggerEnter(Collider other)
         {
+            if (_isActivated)
+            {
+                return;
+            }
             if (other.CompareTag(BombTag) || other.CompareTag(BallTag))
             {
                 manager.Explode();
+                _isActivated = true;
             }
         }
     }

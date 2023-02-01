@@ -8,6 +8,8 @@ namespace Managers
     {
         #region Self Variables
 
+        [SerializeField] private ParticleSystem confettiPS;
+
         private const ushort TotalReplacementDistance = 20;
 
         #endregion
@@ -21,11 +23,13 @@ namespace Managers
         private void SubscribeEvents()
         {
             PinSignals.Instance.onWeightPassedBorder += OnWeightPassedBorder;
+            CoreGameSignals.Instance.onLevelSuccesfull += OnLevelSuccesfull;
         }
 
         private void UnsubscribeEvents()
         {
             PinSignals.Instance.onWeightPassedBorder -= OnWeightPassedBorder;
+            CoreGameSignals.Instance.onLevelSuccesfull -= OnLevelSuccesfull;
         }
 
         private void OnDisable()
@@ -38,6 +42,11 @@ namespace Managers
         private void OnWeightPassedBorder(float replacementRatio)
         {
             transform.DOMove( Vector3.down*TotalReplacementDistance*replacementRatio + transform.position, 1f);
+        }
+
+        private void OnLevelSuccesfull()
+        {
+            confettiPS.gameObject.SetActive(true);
         }
     }
 }

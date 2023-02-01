@@ -47,8 +47,8 @@ namespace Managers
 
         private void MovePin()
         {
-            transform.DOLocalMove(transform.up * rodTransform.localScale.x / 5 + transform.position, 3f).
-                SetSpeedBased().SetEase(curve).OnComplete(()=> DOTween.KillAll());
+            transform.DOLocalMove(transform.up * rodTransform.localScale.z / 4.5f + transform.position, 1.5f).
+                SetSpeedBased().SetEase(curve);
         }
     }
 }

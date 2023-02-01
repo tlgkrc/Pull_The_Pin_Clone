@@ -1,6 +1,7 @@
 ﻿using Commands;
 using Data.UnityObject;
 using Data.ValueObject;
+using DG.Tweening;
 using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -73,7 +74,6 @@ namespace Managers
             CoreGameSignals.Instance.onLevelInitialize += OnInitializeLevel;
             CoreGameSignals.Instance.onClearActiveLevel += _clearActiveLevelCommand.Execute;
             CoreGameSignals.Instance.onNextLevel += OnNextLevel;
-
             CoreGameSignals.Instance.onLevelSuccesfull += OnLevelSuccesfull;
         }
 
@@ -115,11 +115,6 @@ namespace Managers
             CoreGameSignals.Instance.onLevelInitialize?.Invoke();
         }
 
-        private void OnRestartLevel()
-        {
-
-        }
-
         private void OnLevelSuccesfull()
         {
             Invoke(nameof(NextLevel),2);
@@ -127,6 +122,7 @@ namespace Managers
 
         private void NextLevel()
         {
+            DOTween.KillAll();
             CoreGameSignals.Instance.onNextLevel?.Invoke();
             UISignals.Instance.onSetLevelText?.Invoke((ushort)(_levelID + 1));
         }

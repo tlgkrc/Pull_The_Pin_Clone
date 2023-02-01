@@ -8,15 +8,17 @@ namespace Controllers
     {
         #region Self Variables
 
-        [SerializeField] private Color color;
         [SerializeField] private new Renderer renderer;
         [SerializeField] private BombManager manager;
+        
+        private const int ColorGValue = 80;
 
         #endregion
 
         public void ChangeMeshColor()
         {
-            renderer.material.DOColor(color, 1f).OnComplete(()=> manager.gameObject.SetActive(false) );
+            var material = renderer.material;
+            material.DOColor(new Color(material.color.a, ColorGValue, material.color.b), 3f);
         }
     }
 }

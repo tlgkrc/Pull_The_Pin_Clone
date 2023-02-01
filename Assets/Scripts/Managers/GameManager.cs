@@ -1,5 +1,3 @@
-using Controllers;
-using Enums;
 using UnityEngine;
 
 namespace Managers

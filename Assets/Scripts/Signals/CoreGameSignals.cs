@@ -1,6 +1,4 @@
-﻿using System;
-using Extentions;
-using UnityEngine;
+﻿using Extentions;
 using UnityEngine.Events;
 
 namespace Signals

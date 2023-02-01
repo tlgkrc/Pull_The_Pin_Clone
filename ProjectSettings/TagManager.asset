@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ball
   - CupEntry
+  - Bomb
+  - BombParticle
   layers:
   - Default
   - TransparentFX

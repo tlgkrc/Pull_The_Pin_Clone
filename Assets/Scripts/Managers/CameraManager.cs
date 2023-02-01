@@ -1,7 +1,5 @@
 using Cinemachine;
-using DG.Tweening;
 using Enums;
-using Signals;
 using UnityEngine;
 
 namespace Managers
@@ -32,39 +30,11 @@ namespace Managers
             SetBackgroundColor();
         }
 
-        private void Start()
-        {
-            OnSetCameraTarget();
-        }
-
         private void GetReferences()
         {
             _camAnimator = GetComponent<Animator>();
         }
 
-        #region Event Subscriptions
-        private void OnEnable()
-        {
-            SubscribeEvents();
-        }
-
-        private void SubscribeEvents()
-        {
-            CoreGameSignals.Instance.onPlay += OnSetCameraTarget;
-        }
-
-        private void UnsubscribeEvents()
-        {
-            CoreGameSignals.Instance.onPlay -= OnSetCameraTarget;
-        }
-
-        private void OnDisable()
-        {
-            UnsubscribeEvents();
-        }
-
-        #endregion
-        
         private void SetCameraStates()
         {
             if (_cameraState == CameraStates.LevelCam)
@@ -79,12 +49,6 @@ namespace Managers
             SetCameraStates();
         }
         
-        private void OnSetCameraTarget()
-        {
-            // var playerManager = FindObjectOfType<PlayerManager>().transform;
-            // levelCam.Follow = playerManager;
-        }
-     
         private void OnReset()
         {
             _cameraState = CameraStates.LevelCam;

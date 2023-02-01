@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using Managers;
 using Signals;
 using TMPro;
@@ -12,6 +13,7 @@ namespace Controllers
 
         [SerializeField] private UIManager manager;
         [SerializeField] private TextMeshProUGUI percentageText;
+        [SerializeField] private GameObject trueSignGameObject;
 
         private float _collectedBall;
         private float _totalBall;
@@ -33,6 +35,8 @@ namespace Controllers
             if (Math.Abs(_collectedBall - _totalBall) < 0.01f)
             {
                 CoreGameSignals.Instance.onLevelSuccesfull?.Invoke();
+                percentageText.gameObject.transform.DOScale(Vector3.zero, .05f);
+                trueSignGameObject.transform.DOScale(Vector3.one, .5f);
             }
         }
 
@@ -40,6 +44,8 @@ namespace Controllers
         {
             _collectedBall = 0;
             _totalBall = 0;
+            percentageText.gameObject.transform.DOScale(Vector3.one, .05f);
+            trueSignGameObject.transform.DOScale(Vector3.zero, .05f);
         }
 
         public void SetTotalBallNumber()
