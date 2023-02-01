@@ -11,14 +11,14 @@ namespace Controllers
         [SerializeField] private new Renderer renderer;
         [SerializeField] private BombManager manager;
         
-        private const int ColorGValue = 80;
+        private const float ColorGValue = 80f;
 
         #endregion
 
         public void ChangeMeshColor()
         {
             var material = renderer.material;
-            material.DOColor(new Color(material.color.a, ColorGValue, material.color.b), 3f);
+            material.DOColor(new Color(material.color.a, ColorGValue, material.color.b), 1f);
         }
     }
 }

@@ -17,46 +17,33 @@ namespace Managers
         private Sequence _sequence;
         
         #endregion
-        
-        #region Event Subscriptions
-        private void OnEnable()
-        {
-            SubscribeEvents();
-        }
-
-        private void SubscribeEvents()
-        {
-        }
-
-        private void UnsubscribeEvents()
-        {
-        }
-
-        private void OnDisable()
-        {
-            UnsubscribeEvents();
-        }
-
-        #endregion
 
         public void Explode()
         {
             if (!_isActivated)
             {
+                _sequence = DOTween.Sequence();
                 meshController.ChangeMeshColor();
                 _isActivated = true;
-                _sequence.Append(transform.DOScale(1.2f, 3f).OnComplete(() =>
+                _sequence.Append(transform.DOScale(1.2f, 2f));
+                _sequence.Insert(.5f, transform.DOShakeRotation(.8f, 2f, 4));
+                _sequence.OnComplete(() =>
+                {
+                    meshController.gameObject.SetActive(false);
+                    explodeParticle.gameObject.SetActive(true);
+                    AudioSignals.Instance.onPlayExplosionSound?.Invoke();
+                    _sequence.Kill();
+                    if (!_sequence.IsActive())
                     {
-                        AudioSignals.Instance.onPlayExplosionSound?.Invoke();
-                        _sequence.Kill();
-                        meshController.gameObject.SetActive(false);
-                        physicController.gameObject.SetActive(false);
-                        explodeParticle.gameObject.SetActive(true);
-                        
+                        Invoke(nameof(DelayDestroy),.4f);
                     }
-                ));
-                _sequence.Insert(.4f, transform.DOShakeRotation(.2f,1f, 3));
+                });
             }
+        }
+
+        private void DelayDestroy()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

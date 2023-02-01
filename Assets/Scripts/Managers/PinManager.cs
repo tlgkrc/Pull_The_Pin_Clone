@@ -47,7 +47,7 @@ namespace Managers
 
         private void MovePin()
         {
-            transform.DOLocalMove(transform.up * rodTransform.localScale.z / 4.5f + transform.position, 1.5f).
+            transform.DOLocalMove(transform.up * rodTransform.localScale.z / 4.5f + transform.position, 2f).
                 SetSpeedBased().SetEase(curve);
         }
     }
