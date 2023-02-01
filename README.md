@@ -14,3 +14,6 @@ Tolga Karaca ⏩ [<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icon
 
 ## GamePlay Video
 
+
+
+https://user-images.githubusercontent.com/92987466/216173974-09827848-0b8d-450f-b7fe-669aa15ef772.mp4
